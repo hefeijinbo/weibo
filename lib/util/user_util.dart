@@ -1,6 +1,7 @@
 import 'package:weibo/public.dart';
 
 class UserUtil {
+  static const String SP_SESSION_TOKEN = "sp_session_token";
   static const String SP_USER_ID = "sp_user_id";
   static const String SP_USER_NAME = "sp_user_name";
   static const String SP_USER_NICK = "sp_user_nick";
@@ -18,7 +19,8 @@ class UserUtil {
   // 保存用户个人信息
   static User saveUserInfo(Map data) {
     if (data != null) {
-      String id = data['id'];
+      String sessionToken = data['sessionToken'];
+      String id = data['objectId'];
       String username = data['username'];
       String nick = data['nick'];
       String headurl = data['headurl'];
@@ -30,6 +32,7 @@ class UserUtil {
 
       int isvertify = data['isvertify'];
 
+      SpUtil.putString(SP_SESSION_TOKEN, sessionToken);
       SpUtil.putString(SP_USER_ID, id);
       SpUtil.putString(SP_USER_NAME, username);
       SpUtil.putString(SP_USER_NICK, nick);
@@ -38,12 +41,13 @@ class UserUtil {
       SpUtil.putString(SP_USER_GENDER, gender);
       SpUtil.putString(SP_USER_FOLLOW, followCount);
       SpUtil.putString(SP_USER_FAN, fanCount);
-      SpUtil.putBool(SP_IS_ALLOGIN, true);
+      SpUtil.putBool(SP_IS_ALLOGIN, sessionToken.isNotEmpty);
 
       SpUtil.putInt(SP_USER_ISMEMBER, ismember);
       SpUtil.putInt(SP_USER_ISVERTIFY, isvertify);
 
       User userInfo = User(
+          sessionToken: sessionToken,
           id: id,
           username: username,
           nick: nick,
@@ -64,6 +68,7 @@ class UserUtil {
       return User();
     }
     User userInfo = User();
+    userInfo.sessionToken = SpUtil.getString(SP_SESSION_TOKEN);
     userInfo.id = SpUtil.getString(SP_USER_ID);
     userInfo.username = SpUtil.getString(SP_USER_NAME);
     userInfo.nick = SpUtil.getString(SP_USER_NICK);
@@ -98,6 +103,7 @@ class UserUtil {
   }
 
   static loginout() {
+    SpUtil.putString(SP_SESSION_TOKEN, "");
     SpUtil.putBool(SP_IS_ALLOGIN, false);
     SpUtil.putObject(SP_USER_ID, "");
     SpUtil.putString(SP_USER_NAME, "");

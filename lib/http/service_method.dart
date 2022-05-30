@@ -46,6 +46,8 @@ class DioManager {
     _requstHttp(url, successCallBack, "post", null, errorCallBack);
   }
 
+  var options = Options(headers: {"X-LC-Id": "p3YYULf1m77fkNeJxhWFnFzo-9Nh9j0Va", "X-LC-Key": "HcL2CSSGcShlibiem0QnCGoq", "Content-Type": "application/json"});
+
   _requstHttp(String url, Function successCallBack,
       [String method, FormData params, Function errorCallBack]) async {
     Response response;
@@ -59,7 +61,7 @@ class DioManager {
         }
       } else if (method == 'post') {
         if (params != null && params.fields.isNotEmpty) {
-          response = await dio.post(url, data: params);
+          response = await dio.post(url, data: params, options: options);
         } else {
           response = await dio.post(url);
         }
@@ -93,8 +95,8 @@ class DioManager {
 
     String dataStr = json.encode(response.data);
     Map<String, dynamic> dataMap = json.decode(dataStr);
-    if (dataMap == null || dataMap['status'] != 200) {
-      _error(errorCallBack, dataMap['msg'].toString());
+    if (dataMap == null || dataMap['objectId'] == null) {
+      _error(errorCallBack, '数据为空');
     } else if (successCallBack != null) {
       successCallBack(dataMap);
     }

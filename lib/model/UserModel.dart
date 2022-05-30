@@ -1,4 +1,5 @@
 class User {
+  String sessionToken;
   String id;
   String username;
   String nick;
@@ -12,7 +13,9 @@ class User {
 
 
   User(
-      {this.id,
+      {
+        this.sessionToken,
+        this.id,
         this.username,
         this.nick,
         this.headurl,
@@ -24,6 +27,7 @@ class User {
         this.isvertify});
 
   User.fromJson(Map<String, dynamic> json) {
+    sessionToken = json["sessionToken"];
     id = json['id'];
     username = json['username'];
     nick = json['nick'];

@@ -5,7 +5,7 @@ class ServiceUrl {
   // 请求成功
   static const API_CODE_SUCCESS = "200";
   static String getWeiBo = Constant.baseUrl + 'manage/hrlweibo/list.do'; // 获取首页微博列表
-  static String login = Constant.baseUrl + 'manage/hrluser/login.do'; // 登录
+  // static String login = Constant.baseUrl + 'manage/hrluser/login.do'; // 登录
   static String getVedioCategory =Constant.baseUrl + 'manage/hrlvedio/list.do'; // 获取视频分类
   static String feedback =Constant.baseUrl + 'manage/hrluser/uploadfile.do'; // 意见反馈
   static String updateHead =Constant.baseUrl + 'manage/hrluser/updateHead.do'; // 更新头像
@@ -39,4 +39,5 @@ class ServiceUrl {
    static String getVideoSmallList =Constant.baseUrl + 'manage/hrlvedio/smallVideolist.do'; //视频-小视频列表
   static String getVideoDetailRecommendList =Constant.baseUrl + 'manage/hrlvedio/videodetailrecommedlist.do'; //视频详情-推荐列表
 
+  static String login = Constant.baseUrl + 'login'; // 登录
 }

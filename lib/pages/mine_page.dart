@@ -175,7 +175,7 @@ class _MinePageState extends State<MinePage> {
                           height: 50,
                           margin: EdgeInsets.only(left: 20, right: 15),
                           child: UserUtil.getUserInfo().isvertify == 0
-                              ? mHeadWidget
+                              ? mHeadWidget()
                               : Stack(
                                   children: <Widget>[
                                     mHeadWidget(),

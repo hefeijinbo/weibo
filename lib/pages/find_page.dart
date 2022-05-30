@@ -23,7 +23,7 @@ class FindPage extends StatefulWidget {
   _FindPageState createState() => _FindPageState();
 }
 
-class _FindPageState extends State<FindPage> {
+class _FindPageState extends State<FindPage> with SingleTickerProviderStateMixin {
   //活动导航
   bool isFindKindVisible = false;
   final List<String> _tabValues = [
@@ -55,7 +55,7 @@ class _FindPageState extends State<FindPage> {
     super.initState();
     _controller = TabController(
       length: _tabValues.length, //Tab页数量
-      vsync: ScrollableState(), //动画效果的异步处理
+      vsync: this, //动画效果的异步处理
     );
     getFindInfoDate();
   }

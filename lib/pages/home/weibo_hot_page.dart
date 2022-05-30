@@ -7,7 +7,7 @@ class WeiBoHotPage extends StatefulWidget {
   _WeiBoHotPageState createState() => _WeiBoHotPageState();
 }
 
-class _WeiBoHotPageState extends State<WeiBoHotPage> {
+class _WeiBoHotPageState extends State<WeiBoHotPage> with SingleTickerProviderStateMixin {
   final List<String> _tabValues = ['推荐', '附近', '榜单', '明星', '搞笑', '社会', '测试'];
   TabController _controller;
 
@@ -17,7 +17,7 @@ class _WeiBoHotPageState extends State<WeiBoHotPage> {
     super.initState();
     _controller = TabController(
       length: _tabValues.length, //Tab页数量
-      vsync: ScrollableState(), //动画效果的异步处理
+      vsync: this, //动画效果的异步处理
     );
   }
 

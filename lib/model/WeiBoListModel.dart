@@ -16,7 +16,7 @@ class WeiBoListModel {
 
   WeiBoListModel.fromJson(Map<String, dynamic> json) {
     _status = json['status'];
-    _data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    _data = json != null ? new Data.fromJson(json) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -137,9 +137,9 @@ class Data {
     _endRow = json['endRow'];
     _total = json['total'];
     _pages = json['pages'];
-    if (json['list'] != null) {
+    if (json['results'] != null) {
       _list = new List<WeiBoModel>();
-      json['list'].forEach((v) {
+      json['results'].forEach((v) {
         _list.add(new WeiBoModel.fromJson(v));
       });
     }

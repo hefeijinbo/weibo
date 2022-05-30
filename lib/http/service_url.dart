@@ -4,7 +4,7 @@ class ServiceUrl {
 
   // 请求成功
   static const API_CODE_SUCCESS = "200";
-  static String getWeiBo = Constant.baseUrl + 'weibo'; // 获取首页微博列表
+  static String getWeiBo = Constant.baseUrl + 'classes/weibo'; // 获取首页微博列表
   // static String login = Constant.baseUrl + 'manage/hrluser/login.do'; // 登录
   static String getVedioCategory =Constant.baseUrl + 'manage/hrlvedio/list.do'; // 获取视频分类
   static String feedback =Constant.baseUrl + 'manage/hrluser/uploadfile.do'; // 意见反馈

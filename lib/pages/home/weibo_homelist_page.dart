@@ -72,12 +72,10 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
 
     var formData = {
       "catid": widget.mCatId,
-      "pageNum": "1",
-      "pageSize": Constant.PAGE_SIZE,
-      // "userId": UserUtil.getUserInfo().id,
+      "userId": UserUtil.getUserInfo().id,
     };
 
-    DioManager.getInstance().post(ServiceUrl.getWeiBo, formData, (data) {
+    DioManager.getInstance().get(ServiceUrl.getWeiBo, formData, (data) {
       WeiBoListModel category = WeiBoListModel.fromJson(data);
       hotContentList.clear();
       hotContentList.addAll(category.data.list);

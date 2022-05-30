@@ -101,7 +101,7 @@ Widget _authorRow(BuildContext context, WeiBoModel weiboItem) {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.transparent,
-                            image: DecorationImage(
+                            image: weiboItem.userInfo.headurl == null ? null : DecorationImage(
                                 image: NetworkImage(weiboItem.userInfo.headurl),
                                 fit: BoxFit.cover),
                           )),

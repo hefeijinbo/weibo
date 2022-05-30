@@ -55,15 +55,15 @@ class DioManager {
       if (method == 'get') {
         if (params != null) {
           response = await dio.get(url,
-              queryParameters: params);
+              queryParameters: params, options: options);
         } else {
-          response = await dio.get(url);
+          response = await dio.get(url, options: options);
         }
       } else if (method == 'post') {
         if (params != null && params.isNotEmpty) {
           response = await dio.post(url, data: params, options: options);
         } else {
-          response = await dio.post(url);
+          response = await dio.post(url, options: options);
         }
       }
     } on DioError catch (error) {
@@ -95,7 +95,7 @@ class DioManager {
 
     String dataStr = json.encode(response.data);
     Map<String, dynamic> dataMap = json.decode(dataStr);
-    if (dataMap == null || dataMap['objectId'] == null) {
+    if (dataMap == null || (dataMap['objectId'] == null && dataMap["results"] == null)) {
       _error(errorCallBack, '数据为空');
     } else if (successCallBack != null) {
       successCallBack(dataMap);

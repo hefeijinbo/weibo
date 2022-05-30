@@ -61,10 +61,10 @@ class _PersonInfoPageState extends State<PersonInfoPage>
   }
 
   Future<void> fetchData() async {
-    FormData params = FormData.fromMap({
+    var params = {
       'muserId': UserUtil.getUserInfo().id,
       'otheruserId': widget.mOtherUserId,
-    });
+    };
     DioManager.getInstance().post(ServiceUrl.getUserInfo, params, (data) {
       mUser = OtherUser.fromJson(data['data']);
       setState(() {});
@@ -219,10 +219,10 @@ class _PersonInfoPageState extends State<PersonInfoPage>
                 style: TextStyle(color: Colors.black, fontSize: 14)),
           ),
           onTap: () {
-            FormData params = FormData.fromMap({
+            var params = {
               'userid': UserUtil.getUserInfo().id,
               'otheruserid': mUser.id,
-            });
+            };
             DioManager.getInstance().post(ServiceUrl.followOther, params,
                 (data) {
               int mRelation = data['data']['relation'];
@@ -287,10 +287,10 @@ class _PersonInfoPageState extends State<PersonInfoPage>
                   style: TextStyle(fontSize: 12, color: Colors.deepOrange),
                 ),
                 onPressed: () {
-                  FormData params = FormData.fromMap({
+                  var params = {
                     'userid': UserUtil.getUserInfo().id,
                     'otheruserid': mUser.id,
-                  });
+                  };
                   DioManager.getInstance()
                       .post(ServiceUrl.followCancelOther, params, (data) {
                     Navigator.of(context).pop();

@@ -88,10 +88,10 @@ class _ChangeNickNamePageState extends State<ChangeNickNamePage> {
                         ToastUtil.show('昵称不能为空!');
                         return;
                       }
-                      FormData params = FormData.fromMap({
+                      var params = {
                         'userId': UserUtil.getUserInfo().id,
                         'nick': _mEtController.text
-                      });
+                      };
                       DioManager.getInstance()
                           .post(ServiceUrl.updateNick, params, (data) {
                         ToastUtil.show('修改昵称成功!');

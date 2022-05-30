@@ -133,11 +133,11 @@ class _RetWeetPageState extends State<RetWeetPage> {
                     ToastUtil.show("内容不能为空!");
                     return;
                   }
-                  FormData formData = FormData.fromMap({
+                  var formData = {
                     "userId": UserUtil.getUserInfo().id,
                     "zfContent": mEtController.text,
                     "zfWeiBoId": widget.mModel.weiboId
-                  });
+                  };
                   DioManager.getInstance()
                       .post(ServiceUrl.forwardWeiBo, formData, (data) {
                     ToastUtil.show('提交成功!');

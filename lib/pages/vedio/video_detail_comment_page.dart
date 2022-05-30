@@ -121,8 +121,8 @@ class _VideoDetailCommentPageState extends State<VideoDetailCommentPage> {
   }
 
   Future getCommentDataLoadMore(int page, String weiboId) async {
-    FormData formData = FormData.fromMap(
-        {"pageNum": page, "pageSize": Constant.PAGE_SIZE, "weiboid": weiboId});
+    var formData =
+        {"pageNum": page, "pageSize": Constant.PAGE_SIZE, "weiboid": weiboId};
     DioManager.getInstance().post(ServiceUrl.getWeiBoDetailComment, formData,
         (data) {
       CommentList mComment = CommentList.fromJson(data['data']);

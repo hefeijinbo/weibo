@@ -552,11 +552,11 @@ Widget _RePraCom(BuildContext context, WeiBoModel weiboItem) {
 Future<bool> onLikeButtonTapped(bool isLiked, WeiBoModel weiboItem) async {
   final Completer<bool> completer = new Completer<bool>();
 
-  FormData formData = FormData.fromMap({
+  var formData = {
     "weiboId": weiboItem.weiboId,
     "userId": UserUtil.getUserInfo().id,
     "status": weiboItem.zanStatus == 0 ? 1 : 0, //1点赞,0取消点赞
-  });
+  };
   DioManager.getInstance().post(ServiceUrl.zanWeiBo, formData, (data) {
     if (weiboItem.zanStatus == 0) {
       //点赞成功

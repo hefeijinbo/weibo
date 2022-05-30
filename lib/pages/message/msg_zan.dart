@@ -25,10 +25,10 @@ class _MsgZanPageState extends State<MsgZanPage> {
     isloadingMore = false;
     ishasMore = true;
     mCurPage = 1;
-    FormData formData = FormData.fromMap({
+    var formData = {
       "pageNum": "1",
       "pageSize": Constant.PAGE_SIZE,
-    });
+    };
     DioManager.getInstance().post(ServiceUrl.getMsgZanList, formData, (data) {
       ComZanListModel mList = ComZanListModel.fromJson(data['data']);
       mZanList.clear();
@@ -40,10 +40,10 @@ class _MsgZanPageState extends State<MsgZanPage> {
   }
 
   Future getSubDataLoadMore(int page) async {
-    FormData formData = FormData.fromMap({
+    var formData = {
       "pageNum": page,
       "pageSize": Constant.PAGE_SIZE,
-    });
+    };
     await DioManager.getInstance().post(ServiceUrl.getMsgZanList, formData,
         (data) {
       ComZanListModel mList = ComZanListModel.fromJson(data['data']);

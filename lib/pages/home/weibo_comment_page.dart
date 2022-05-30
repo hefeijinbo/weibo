@@ -119,11 +119,11 @@ class _CommentDialogPageState extends State<CommentDialogPage> {
 
                       if (widget.isReplyWeiBo) {
                         //如果是评论微博
-                        FormData formData = FormData.fromMap({
+                        var formData = {
                           "userId": UserUtil.getUserInfo().id,
                           "content": _inputController.text.toString(),
                           "weiboId": widget.mWeiBoOrCommentId
-                        });
+                        };
                         DioManager.getInstance()
                             .post(ServiceUrl.addComments, formData, (data) {
                           _inputController.clear();
@@ -134,11 +134,11 @@ class _CommentDialogPageState extends State<CommentDialogPage> {
                         });
                       } else {
                         //如果是评论微博的回复
-                        FormData formData = FormData.fromMap({
+                        var formData = {
                           "userId": UserUtil.getUserInfo().id,
                           "content": _inputController.text.toString(),
                           "commentid": widget.mWeiBoOrCommentId
-                        });
+                        };
                         DioManager.getInstance().post(
                             ServiceUrl.addCommentsReply, formData, (data) {
                           _inputController.clear();

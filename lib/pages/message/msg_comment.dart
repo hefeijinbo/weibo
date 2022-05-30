@@ -25,10 +25,10 @@ class _MsgCommentPageState extends State<MsgCommentPage> {
     isloadingMore = false;
     ishasMore = true;
     mCurPage = 1;
-    FormData formData = FormData.fromMap({
+    var formData = {
       "pageNum": "1",
       "pageSize": Constant.PAGE_SIZE,
-    });
+    };
     DioManager.getInstance().post(ServiceUrl.getMsgCommentList, formData,
         (data) {
       ComZanListModel mList = ComZanListModel.fromJson(data['data']);
@@ -41,10 +41,10 @@ class _MsgCommentPageState extends State<MsgCommentPage> {
   }
 
   Future getSubDataLoadMore(int page) async {
-    FormData formData = FormData.fromMap({
+    var formData = {
       "pageNum": page,
       "pageSize": Constant.PAGE_SIZE,
-    });
+    };
     await DioManager.getInstance().post(ServiceUrl.getMsgCommentList, formData,
         (data) {
       ComZanListModel mList = ComZanListModel.fromJson(data['data']);

@@ -4,7 +4,7 @@ class ServiceUrl {
 
   // 请求成功
   static const API_CODE_SUCCESS = "200";
-  static String getWeiBo = Constant.baseUrl + 'manage/hrlweibo/list.do'; // 获取首页微博列表
+  static String getWeiBo = Constant.baseUrl + 'weibo'; // 获取首页微博列表
   // static String login = Constant.baseUrl + 'manage/hrluser/login.do'; // 登录
   static String getVedioCategory =Constant.baseUrl + 'manage/hrlvedio/list.do'; // 获取视频分类
   static String feedback =Constant.baseUrl + 'manage/hrluser/uploadfile.do'; // 意见反馈
@@ -24,7 +24,7 @@ class ServiceUrl {
   static String getWeiBoAtUser =Constant.baseUrl + 'manage/hrlweibo/getWeiBoAtUserList.do'; //获取推荐人列表(发布微博选择@用户)
   static String getWeiBoTopicTypeList =Constant.baseUrl + 'manage/hrlweibo/getTopicTypeList.do'; //获取发布微博话题分类列表
   static String getWeiBoTopicList =Constant.baseUrl + 'manage/hrlweibo/getTopicList.do';  //获取发布微博话题分类对应的话题列表
-  static String publishWeiBo =Constant.baseUrl + 'manage/hrlweibo/publish.do'; // 发布微博
+  static String publishWeiBo =Constant.baseUrl + 'classes/weibo'; // 发布微博
   static String zanWeiBo =Constant.baseUrl + 'manage/hrlweibo/zan.do'; // 点赞微博
   static String forwardWeiBo =Constant.baseUrl + 'manage/hrlweibo/forward.do'; // 转发微博
   static String getWeiBoCommentReplyList =Constant.baseUrl + 'hrlcomment/gainCommentsReplyList.do'; //获取微博评论回复列表

@@ -155,11 +155,12 @@ class _WeiBoPublishPageState extends State<WeiBoPublishPage> {
                     mSubmitFileList.add(MultipartFile.fromFileSync(
                         mFileList.elementAt(i).path));
                   }
-                  FormData formData = FormData.fromMap({
-                    "userId": "1",
+                  var formData = {
+                    "userId": UserUtil.getUserId(),
                     "content": _mEtController.text,
-                    "files": mSubmitFileList
-                  });
+                    "files": mSubmitFileList,
+                    "catid": "1",
+                  };
                   DioManager.getInstance()
                       .post(ServiceUrl.publishWeiBo, formData, (data) {
                     ToastUtil.show('提交成功!');

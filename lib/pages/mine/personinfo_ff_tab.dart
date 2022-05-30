@@ -51,11 +51,11 @@ class _FFRecommendPageState extends State<FFRecommendPage> {
       isloadingMore = false;
       ishasMore = true;
       curPage = 1;
-      FormData params = FormData.fromMap({
+      var params = {
         'userId': UserUtil.getUserInfo().id,
         'pageNum': "$curPage",
         "pageSize": Constant.PAGE_SIZE,
-      });
+      };
       DioManager.getInstance().post(ServiceUrl.getFanFollowRecommend, params,
           (data) {
         List<FanFollowModel> list = List();
@@ -67,11 +67,11 @@ class _FFRecommendPageState extends State<FFRecommendPage> {
         setState(() {});
       }, (error) {});
     } else {
-      FormData params = FormData.fromMap({
+      var params = {
         'userId': UserUtil.getUserInfo().id,
         'pageNum': "$curPage",
         "pageSize": Constant.PAGE_SIZE,
-      });
+      };
       DioManager.getInstance().post(ServiceUrl.getFanFollowRecommend, params,
           (data) {
         List<FanFollowModel> list = List();
@@ -303,10 +303,10 @@ class _FFRecommendPageState extends State<FFRecommendPage> {
                 style: TextStyle(color: Colors.orange, fontSize: 12)),
           ),
           onTap: () {
-            FormData params = FormData.fromMap({
+            var params = {
               'userid': UserUtil.getUserInfo().id,
               'otheruserid': mModel.id,
-            });
+            };
             DioManager.getInstance().post(ServiceUrl.followOther, params,
                 (data) {
               int mRelation = data['data']['relation'];
@@ -376,10 +376,10 @@ class _FFRecommendPageState extends State<FFRecommendPage> {
                   style: TextStyle(fontSize: 12, color: Colors.deepOrange),
                 ),
                 onPressed: () {
-                  FormData params = FormData.fromMap({
+                  var params = {
                     'userid': UserUtil.getUserInfo().id,
                     'otheruserid': mModel.id,
-                  });
+                  };
                   DioManager.getInstance()
                       .post(ServiceUrl.followCancelOther, params, (data) {
                     Navigator.of(context).pop();

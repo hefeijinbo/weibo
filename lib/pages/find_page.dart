@@ -62,7 +62,7 @@ class _FindPageState extends State<FindPage> with SingleTickerProviderStateMixin
 
   //获取发现页信息
   Future<Null> getFindInfoDate() async {
-    FormData formData = FormData.fromMap({"userId": UserUtil.getUserInfo().id});
+    var formData = {"userId": UserUtil.getUserInfo().id};
     DioManager.getInstance().post(ServiceUrl.getFindHomeInfo, formData, (data) {
       print("返回的正确数据:${data}");
       FindHomeModel mModel = FindHomeModel.fromJson(data['data']);

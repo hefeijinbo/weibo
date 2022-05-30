@@ -29,13 +29,13 @@ class DioManager {
   }
 
 //get请求
-  get(String url, FormData params, Function successCallBack,
+  get(String url, Map<String, dynamic> params, Function successCallBack,
       Function errorCallBack) async {
     _requstHttp(url, successCallBack, 'get', params, errorCallBack);
   }
 
   //post请求
-  post(String url, params, Function successCallBack,
+  post(String url, Map<String, dynamic> params, Function successCallBack,
       Function errorCallBack) async {
     _requstHttp(url, successCallBack, "post", params, errorCallBack);
   }
@@ -49,18 +49,18 @@ class DioManager {
   var options = Options(headers: {"X-LC-Id": "p3YYULf1m77fkNeJxhWFnFzo-9Nh9j0Va", "X-LC-Key": "HcL2CSSGcShlibiem0QnCGoq", "Content-Type": "application/json"});
 
   _requstHttp(String url, Function successCallBack,
-      [String method, FormData params, Function errorCallBack]) async {
+      [String method, Map<String, dynamic> params, Function errorCallBack]) async {
     Response response;
     try {
       if (method == 'get') {
         if (params != null) {
           response = await dio.get(url,
-              queryParameters: Map.fromEntries(params.fields));
+              queryParameters: params);
         } else {
           response = await dio.get(url);
         }
       } else if (method == 'post') {
-        if (params != null && params.fields.isNotEmpty) {
+        if (params != null && params.isNotEmpty) {
           response = await dio.post(url, data: params, options: options);
         } else {
           response = await dio.post(url);

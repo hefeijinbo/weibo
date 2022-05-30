@@ -57,9 +57,9 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> with SingleTickerProvider
   }
 
   Future getWeiBoDeatilData() async {
-    FormData params = FormData.fromMap({
+    var params = {
       'weiboid': mWeiboTopData.weiboId,
-    });
+    };
     DioManager.getInstance().post(ServiceUrl.getWeiBoDetail, params, (data) {
       mForwardList.clear();
       mForwardList.addAll(WeiBoDetail.fromJson(data['data']).forward);
@@ -76,8 +76,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> with SingleTickerProvider
   }
 
   Future getCommentDataLoadMore(int page, String weiboId) async {
-    FormData formData = FormData.fromMap(
-        {"pageNum": page, "pageSize": Constant.PAGE_SIZE, "weiboid": weiboId});
+    var formData = {"pageNum": page, "pageSize": Constant.PAGE_SIZE, "weiboid": weiboId};
     DioManager.getInstance().post(ServiceUrl.getWeiBoDetailComment, formData,
         (data) {
       CommentList mComment = CommentList.fromJson(data['data']);
@@ -95,8 +94,7 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> with SingleTickerProvider
   }
 
   Future getForwardDataLoadMore(int page, String weiboId) async {
-    FormData formData = FormData.fromMap(
-        {"pageNum": page, "pageSize": Constant.PAGE_SIZE, "weiboid": weiboId});
+    var formData = {"pageNum": page, "pageSize": Constant.PAGE_SIZE, "weiboid": weiboId};
     DioManager.getInstance().post(ServiceUrl.getWeiBoDetailForward, formData,
         (data) {
       ForwardList mComment = ForwardList.fromJson(data['data']);
@@ -117,11 +115,11 @@ class _WeiBoDetailState extends State<WeiBoDetailPage> with SingleTickerProvider
   Future<bool> onLikeButtonTapped(bool isLiked, WeiBoModel weiboItem) async {
     final Completer<bool> completer = new Completer<bool>();
 
-    FormData formData = FormData.fromMap({
+    var formData = {
       "weiboId": weiboItem.weiboId,
       "userId": UserUtil.getUserInfo().id,
       "status": weiboItem.zanStatus == 0 ? 1 : 0, //1点赞,0取消点赞
-    });
+    };
     DioManager.getInstance().post(ServiceUrl.zanWeiBo, formData, (data) {
       if (weiboItem.zanStatus == 0) {
         //点赞成功

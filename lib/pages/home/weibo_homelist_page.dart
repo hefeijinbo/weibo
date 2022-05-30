@@ -70,12 +70,12 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
     ishasMore = true;
     mCurPage = 1;
 
-    FormData formData = FormData.fromMap({
+    var formData = {
       "catid": widget.mCatId,
       "pageNum": "1",
       "pageSize": Constant.PAGE_SIZE,
-      "userId": UserUtil.getUserInfo().id,
-    });
+      // "userId": UserUtil.getUserInfo().id,
+    };
 
     DioManager.getInstance().post(ServiceUrl.getWeiBo, formData, (data) {
       WeiBoListModel category = WeiBoListModel.fromJson(data);
@@ -94,12 +94,12 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
   }
 
   Future getSubDataLoadMore(int page) async {
-    FormData formData = FormData.fromMap({
+    var formData = {
       "catid": widget.mCatId,
       "pageNum": page,
       "pageSize": Constant.PAGE_SIZE,
-      "userId": UserUtil.getUserInfo().id,
-    });
+      // "userId": UserUtil.getUserInfo().id,
+    };
     List<WeiBoModel> mListRecords = new List();
     await DioManager.getInstance().post(ServiceUrl.getWeiBo, formData, (data) {
       WeiBoListModel category = WeiBoListModel.fromJson(data);

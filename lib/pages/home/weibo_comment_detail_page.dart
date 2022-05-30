@@ -58,11 +58,11 @@ class _WeiBoCommentDetailPageState extends State<WeiBoCommentDetailPage> {
     ishasMore = true;
     mCurPage = 1;
 
-    FormData formData = FormData.fromMap({
+    var formData = {
       'commentid': widget.mCommentTop.commentid,
       "pageNum": "1",
       "pageSize": Constant.PAGE_SIZE,
-    });
+    };
 
     DioManager.getInstance().post(ServiceUrl.getWeiBoCommentReplyList, formData,
         (data) {
@@ -73,11 +73,11 @@ class _WeiBoCommentDetailPageState extends State<WeiBoCommentDetailPage> {
   }
 
   Future getSubDataLoadMore(int page) async {
-    FormData formData = FormData.fromMap({
+    var formData = {
       'commentid': widget.mCommentTop.commentid,
       "pageNum": page,
       "pageSize": Constant.PAGE_SIZE,
-    });
+    };
     await DioManager.getInstance()
         .post(ServiceUrl.getWeiBoCommentReplyList, formData, (data) {
       DioManager.getInstance()

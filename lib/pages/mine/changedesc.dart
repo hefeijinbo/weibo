@@ -42,10 +42,10 @@ class _ChangeDescPageState extends State<ChangeDescPage> {
                     ToastUtil.show('内容不能为空!');
                     return;
                   }
-                  FormData params = FormData.fromMap({
+                  var params = {
                     'userId': UserUtil.getUserInfo().id,
                     'personSign': _mEtController.text
-                  });
+                  };
                   DioManager.getInstance()
                       .post(ServiceUrl.updateIntroduce, params, (data) {
                     ToastUtil.show('修改个性签名成功!');

@@ -89,6 +89,10 @@ class UserUtil {
     return b != null && b;
   }
 
+  static String getUserId() {
+    return SpUtil.getString(SP_USER_ID);
+  }
+
   // 保存用户头像
   static saveUserHeadUrl(String mUrl) async {
     await SpUtil.putString(SP_USER_HEADURL, mUrl);

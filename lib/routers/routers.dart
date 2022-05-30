@@ -80,7 +80,7 @@ class Routes {
     print('我是navigateTo传递的参数：$query');
 
     path = path + query;
-    return Future(() => null);
+    return FluroRouter.appRouter.navigateTo(context, path);
   }
 
   // 对参数进行encode，解决参数中有特殊字符，影响fluro路由匹配(https://www.jianshu.com/p/e575787d173c)

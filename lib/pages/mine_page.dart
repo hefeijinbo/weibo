@@ -14,10 +14,10 @@ class _MinePageState extends State<MinePage> {
     super.initState();
     if (UserUtil.isLogin()) {
       print("请求参数的值是:" + UserUtil.getUserInfo().id);
-      FormData params = FormData.fromMap({
+      var params = {
         'muserId': UserUtil.getUserInfo().id,
         'otheruserId': UserUtil.getUserInfo().id,
-      });
+      };
       DioManager.getInstance().post(ServiceUrl.getUserInfo, params, (data) {
         UserUtil.saveUserInfo(data['data']);
         setState(() {});
@@ -32,10 +32,10 @@ class _MinePageState extends State<MinePage> {
      var isTopRoute = ModalRoute.of(context).isCurrent;
     if (isTopRoute) {
        if (UserUtil.isLogin()) {
-        FormData params = FormData.fromMap({
+        var params = {
           'muserId': UserUtil.getUserInfo().id,
           'otheruserId': UserUtil.getUserInfo().id,
-        });
+        };
         DioManager.getInstance().post(ServiceUrl.getUserInfo, params, (data) {
           UserUtil.saveUserInfo(data['data']);
           SchedulerBinding.instance

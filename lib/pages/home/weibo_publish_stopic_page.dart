@@ -44,9 +44,9 @@ class WeiBoPublishTopicPageState extends State<WeiBoPublishTopicPage> {
   }
 
   void loadRightTopicData(String type) async {
-    FormData params = FormData.fromMap({
+    var params = {
       'topicType': type,
-    });
+    };
     DioManager.getInstance().post(ServiceUrl.getWeiBoTopicList, params, (data) {
       // List<WeiboAtUser> listRecommend = List();
       //  List<WeiboAtUser> listNormal= List();

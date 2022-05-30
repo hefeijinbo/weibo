@@ -24,8 +24,8 @@ class _VideoSmallVideoPageState extends State<VideoSmallVideoPage> {
       isloadingMore = false;
       ishasMore = true;
       mCurPage = 1;
-      FormData params =
-          FormData.fromMap({'pageNum': "$mCurPage", 'pageSize': "10"});
+      var params =
+          {'pageNum': "$mCurPage", 'pageSize': "10"};
       DioManager.getInstance().post(ServiceUrl.getVideoSmallList, params,
           (data) {
         List<VideoModel> list = List();
@@ -37,8 +37,8 @@ class _VideoSmallVideoPageState extends State<VideoSmallVideoPage> {
         setState(() {});
       }, (error) {});
     } else {
-      FormData params =
-          FormData.fromMap({'pageNum': "$mCurPage", 'pageSize': "10"});
+      var params =
+          {'pageNum': "$mCurPage", 'pageSize': "10"};
       DioManager.getInstance().post(ServiceUrl.getVideoSmallList, params,
           (data) {
         List<VideoModel> list = List();

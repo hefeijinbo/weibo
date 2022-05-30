@@ -51,12 +51,12 @@ class FollowListPageState extends State<FollowListPage> {
       isloadingMore = false;
       ishasMore = true;
       curPage = 1;
-      FormData params = FormData.fromMap({
+      var params = {
         'mcurrentuserId': UserUtil.getUserInfo().id,
         'mqueryuseid': UserUtil.getUserInfo().id,
         'pageNum': "$curPage",
         'pageSize': "10"
-      });
+      };
       DioManager.getInstance().post(ServiceUrl.getFollowList, params, (data) {
         List<FanFollowModel> list = List();
         data['data']['list'].forEach((data) {
@@ -67,12 +67,12 @@ class FollowListPageState extends State<FollowListPage> {
         setState(() {});
       }, (error) {});
     } else {
-      FormData params = FormData.fromMap({
+      var params = {
         'mcurrentuserId': UserUtil.getUserInfo().id,
         'mqueryuseid': UserUtil.getUserInfo().id,
         'pageNum': "$curPage",
         'pageSize': "10"
-      });
+      };
       DioManager.getInstance().post(ServiceUrl.getFollowList, params, (data) {
         List<FanFollowModel> list = List();
         data['data']['list'].forEach((data) {
@@ -314,10 +314,10 @@ class FollowListPageState extends State<FollowListPage> {
                 style: TextStyle(color: Colors.orange, fontSize: 12)),
           ),
           onTap: () {
-            FormData params = FormData.fromMap({
+            var params = {
               'userid': UserUtil.getUserInfo().id,
               'otheruserid': mModel.id,
-            });
+            };
             DioManager.getInstance().post(ServiceUrl.followOther, params,
                 (data) {
               int mRelation = data['data']['relation'];
@@ -387,10 +387,10 @@ class FollowListPageState extends State<FollowListPage> {
                   style: TextStyle(fontSize: 12, color: Colors.deepOrange),
                 ),
                 onPressed: () {
-                  FormData params = FormData.fromMap({
+                  var params = {
                     'userid': UserUtil.getUserInfo().id,
                     'otheruserid': mModel.id,
-                  });
+                  };
                   DioManager.getInstance()
                       .post(ServiceUrl.followCancelOther, params, (data) {
                     Navigator.of(context).pop();

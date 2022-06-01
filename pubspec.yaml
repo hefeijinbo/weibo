@@ -20,13 +20,14 @@ dependencies:
   flutter:
     sdk: flutter
   #https://github.com/ZaraclaJ/audio_recorder
-  path_provider: ^1.1.0
-  file: ^5.0.4
+  path_provider: ^2.0.10
+  file: ^6.1.2
+  leancloud_storage: ^0.7.8
 
   cupertino_icons: ^1.0.3
 
   #https://github.com/luanpotter/audioplayers
-  audioplayers: ^0.14.0
+  audioplayers: ^0.20.1
   #https://github: com/best-flutter/flutter_swiper
   flutter_swiper: ^1.1.6
    #https://github.com/best-flutter/flutter_page_indicator
@@ -54,8 +55,8 @@ dev_dependencies:
   flutter_screenutil: ^0.5.2
   dio: 4.0.6
   fluttertoast: ^3.1.0
-  shared_preferences: ^0.5.3
-  synchronized: ^2.1.0
+  shared_preferences: ^2.0.5
+  synchronized: ^3.0.0+2
   event_bus: ^1.0.1
   # https://github.com/theyakka/fluro
   fluro: ^2.0.3
@@ -70,14 +71,14 @@ dev_dependencies:
 
 
   #https://github.com/Daegalus/dart-uuid
-  uuid: 2.0.4
+  uuid: 3.0.6
 
 
   #https://pub.flutter-io.cn/packages/audio_recorder
-  flutter_record_plugin:
-        git:
-          url: https://github.com/huangruiLearn/flutter_record_plugin.git
-          ref: ca5a0f3821616d38842dde4a6588a1ce9ad5673d
+#  flutter_record_plugin:
+#        git:
+#          url: https://github.com/huangruiLearn/flutter_record_plugin.git
+#          ref: ca5a0f3821616d38842dde4a6588a1ce9ad5673d
 
 
 

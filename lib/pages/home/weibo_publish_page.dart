@@ -1,6 +1,7 @@
 import "package:dio/dio.dart";
 import 'package:extended_text_field/extended_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:weibo/constant/constant.dart';
 import 'package:weibo/model/WeiboAtUser.dart';
 import 'package:weibo/public.dart';
@@ -33,7 +34,6 @@ class _WeiBoPublishPageState extends State<WeiBoPublishPage> {
       new KeyboardVisibilityNotification();
   List<File> mFileList = List();
   File mSelectedImageFile;
-  List<MultipartFile> mSubmitFileList = List();
 
   MySpecialTextSpanBuilder _mySpecialTextSpanBuilder =
       MySpecialTextSpanBuilder();
@@ -145,20 +145,23 @@ class _WeiBoPublishPageState extends State<WeiBoPublishPage> {
           Align(
               alignment: Alignment.centerRight,
               child: InkWell(
-                onTap: () {
+                onTap: () async {
                   if (_mEtController.text.isEmpty) {
                     ToastUtil.show("内容不能为空!");
                     return;
                   }
-                  mSubmitFileList.clear();
+                  var files = '';
                   for (int i = 0; i < mFileList.length; i++) {
-                    mSubmitFileList.add(MultipartFile.fromFileSync(
-                        mFileList.elementAt(i).path));
+                    File file = mFileList[i];
+                    LCFile lcfile = await LCFile.fromPath(file.hashCode.toString(), file.path);
+                    await lcfile.save();
+                    print(lcfile.url);
+                    files += ("," + lcfile.url);
                   }
                   var formData = {
                     "userId": UserUtil.getUserId(),
                     "content": _mEtController.text,
-                    "files": mSubmitFileList,
+                    "files": files,
                     "catid": "1",
                   };
                   DioManager.getInstance()
@@ -166,7 +169,6 @@ class _WeiBoPublishPageState extends State<WeiBoPublishPage> {
                     ToastUtil.show('提交成功!');
                     setState(() {
                       mFileList.clear();
-                      mSubmitFileList.clear();
                       _mEtController.clear();
                     });
                   }, (error) {

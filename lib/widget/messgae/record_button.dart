@@ -5,7 +5,7 @@ import 'package:file/file.dart';
 import 'package:file/local.dart';
 import 'package:flutter/material.dart';
 import 'package:weibo/constant/constant.dart';
-import 'package:flutter_record_plugin/flutter_record_plugin.dart';
+// import 'package:flutter_record_plugin/flutter_record_plugin.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'ImagesAnimation.dart';
@@ -110,70 +110,70 @@ Map<int, Image> imageCaches = new Map();
 class _RecordButtonState extends State<RecordButton> {
 //  Recording _recording = new Recording();
 
-  startRecord() async {
-    print("开始录音");
-    io.Directory appDocDirectory = await getApplicationDocumentsDirectory();
-    String path = appDocDirectory.path +
-        '/' +
-        new DateTime.now().millisecondsSinceEpoch.toString();
-    print("开始录音路径: $path");
-    await FlutterRecordPlugin.start(
-        path: path, audioOutputFormat: AudioOutputFormat.AAC);
-    bool isRecording = await FlutterRecordPlugin.isRecording;
-  }
+  // startRecord() async {
+  //   print("开始录音");
+  //   io.Directory appDocDirectory = await getApplicationDocumentsDirectory();
+  //   String path = appDocDirectory.path +
+  //       '/' +
+  //       new DateTime.now().millisecondsSinceEpoch.toString();
+  //   print("开始录音路径: $path");
+  //   await FlutterRecordPlugin.start(
+  //       path: path, audioOutputFormat: AudioOutputFormat.AAC);
+  //   bool isRecording = await FlutterRecordPlugin.isRecording;
+  // }
+  //
+  // cancelRecord() async {
+  //   var recording = await FlutterRecordPlugin.stop();
+  //   File file = mLocalFileSystem.file(recording.path);
+  //   file.delete();
+  //   print("取消录音删除文件成功!");
+  //   if (mOverlayEntry != null) {
+  //     mOverlayEntry.remove();
+  //     mOverlayEntry = null;
+  //   }
+  //   //  }
+  //   //   });
+  //   setState(() {
+  //     //_recording = recording;
+  //   });
+  // }
 
-  cancelRecord() async {
-    var recording = await FlutterRecordPlugin.stop();
-    File file = mLocalFileSystem.file(recording.path);
-    file.delete();
-    print("取消录音删除文件成功!");
-    if (mOverlayEntry != null) {
-      mOverlayEntry.remove();
-      mOverlayEntry = null;
-    }
-    //  }
-    //   });
-    setState(() {
-      //_recording = recording;
-    });
-  }
-
-  completeRecord() async {
-    int intervalTime =
-        new DateTime.now().millisecondsSinceEpoch - mSatrtRecordTime;
-    if (intervalTime < MIN_INTERVAL_TIME) {
-      print("录音时间太短");
-      mCenterTipText = "录音时间太短";
-      voiceIco = Constant.ASSETS_IMG + "ic_volume_wraning.png";
-      showAnim = false;
-      mButtonText = "按住录音";
-      mOverlayEntry.markNeedsBuild();
-      var recording = await FlutterRecordPlugin.stop();
-      bool isRecording = await FlutterRecordPlugin.isRecording;
-      File file = mLocalFileSystem.file(recording.path);
-      file.delete();
-      print("录音时间太短:删除文件成功!");
-      if (mOverlayEntry != null) {
-        Future.delayed(Duration(milliseconds: 500), () {
-          mOverlayEntry.remove();
-          mOverlayEntry = null;
-        });
-      }
-    } else {
-      print("录音完成");
-
-      var recording = await FlutterRecordPlugin.stop();
-      print("Stop recording: ${recording.path}");
-      File file = mLocalFileSystem.file(recording.path);
-      print("  File length: ${recording.duration.inSeconds}");
-
-      if (mOverlayEntry != null) {
-        mOverlayEntry.remove();
-        mOverlayEntry = null;
-      }
-      widget.onAudioCallBack?.call(file, recording.duration.inSeconds);
-    }
-  }
+  // completeRecord() async {
+  //   int intervalTime =
+  //       new DateTime.now().millisecondsSinceEpoch - mSatrtRecordTime;
+  //   if (intervalTime < MIN_INTERVAL_TIME) {
+  //     print("录音时间太短");
+  //     mCenterTipText = "录音时间太短";
+  //     voiceIco = Constant.ASSETS_IMG + "ic_volume_wraning.png";
+  //     showAnim = false;
+  //     mButtonText = "按住录音";
+  //     mOverlayEntry.markNeedsBuild();
+  //     var recording = await FlutterRecordPlugin.stop();
+  //     bool isRecording = await FlutterRecordPlugin.isRecording;
+  //     File file = mLocalFileSystem.file(recording.path);
+  //     file.delete();
+  //     print("录音时间太短:删除文件成功!");
+  //     if (mOverlayEntry != null) {
+  //       Future.delayed(Duration(milliseconds: 500), () {
+  //         mOverlayEntry.remove();
+  //         mOverlayEntry = null;
+  //       });
+  //     }
+  //   } else {
+  //     print("录音完成");
+  //
+  //     var recording = await FlutterRecordPlugin.stop();
+  //     print("Stop recording: ${recording.path}");
+  //     File file = mLocalFileSystem.file(recording.path);
+  //     print("  File length: ${recording.duration.inSeconds}");
+  //
+  //     if (mOverlayEntry != null) {
+  //       mOverlayEntry.remove();
+  //       mOverlayEntry = null;
+  //     }
+  //     widget.onAudioCallBack?.call(file, recording.duration.inSeconds);
+  //   }
+  // }
 
   bool flag = true; // member variable
 
@@ -214,7 +214,7 @@ class _RecordButtonState extends State<RecordButton> {
             showAnim = true;
             buildOverLayView(context);
             setState(() {});
-            startRecord();
+            // startRecord();
             startY = details.globalPosition.dy;
             mSatrtRecordTime = new DateTime.now().millisecondsSinceEpoch;
           }
@@ -225,9 +225,9 @@ class _RecordButtonState extends State<RecordButton> {
           });
           if (offsetY >= 150) {
             print("执行取消录音:" + offsetY.toString());
-            cancelRecord();
+            // cancelRecord();
           } else {
-            completeRecord();
+            // completeRecord();
           }
         },
         onVerticalDragUpdate: (details) {

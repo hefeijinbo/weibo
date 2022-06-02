@@ -23,12 +23,17 @@ class WeiBoModel {
     weiboId = json['objectId'] ?? "";
     categoryId = json['catid'] ?? "";
     content = json['content'] ?? "";
-    userInfo = UserInfo.fromJson(json['userInfo'] ?? {});
-    // picurl = json['picurl'].cast<String>();
+    userInfo = UserInfo.fromJson(json['userInfo'] ?? "");
+    String files = json["files"];
+    picurl = List<String>();
+    if (files != null) {
+      files = files.replaceAll(",", "");
+      picurl.add(files);
+    }
     zfContent = json['zfContent'] ?? "";
     zfNick = json['zfNick'] ?? "";
     zfUserId = json['zfUserId'] ?? "";
-    // zfPicurl = json['zfPicurl'].cast<String>();
+    // zfPicurl = json["files"].replaceAll(",", "");
     zfWeiBoId = json['zfWeiBoId'] ?? "";
     containZf = json['containZf'] ?? false;
     vediourl = json['vediourl'] ?? "";
@@ -96,7 +101,7 @@ class WeiBoModel {
 }
 
 class UserInfo  {
-  int id;
+  String id;
   String nick;
   String headurl;
   String decs;
@@ -107,13 +112,23 @@ class UserInfo  {
 
   UserInfo({this.id, this.nick, this.headurl, this.decs, this.ismember, this.isvertify});
 
-  UserInfo.fromJson(Map<String, dynamic> json) {
-    id = json['id'] ?? 0;
-    nick = json['nick'] ?? "";
-    headurl = json['headurl'] ?? "";
-    decs = json['decs'] ?? "";
-    ismember = json['ismember'] ?? 0;
-    isvertify = json['isvertify'] ?? 0;
+  UserInfo.fromJson(String json) {
+    var list = json.split(";");
+    if (list.length >= 3) {
+      id = list[0];
+      nick = list[1];
+      headurl = list[2];
+    } else {
+      id = "";
+      nick = "";
+      headurl = "";
+    }
+    // id = json['id'] ?? 0;
+    // nick = json['nick'] ?? "";
+    // headurl = json['headurl'] ?? "";
+    decs =  "";
+    ismember = 0;
+    isvertify = 0;
 
 
   }

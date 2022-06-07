@@ -88,7 +88,7 @@ class SpUtil {
 
   /// put string.
   static Future<bool> putString(String key, String value) {
-    if (_prefs == null) return null;
+    if (_prefs == null || value == null) return null;
     return _prefs.setString(key, value);
   }
 
@@ -100,7 +100,7 @@ class SpUtil {
 
   /// put bool.
   static Future<bool> putBool(String key, bool value) {
-    if (_prefs == null) return null;
+    if (_prefs == null || value == null) return null;
     return _prefs.setBool(key, value);
   }
 
@@ -112,7 +112,7 @@ class SpUtil {
 
   /// put int.
   static Future<bool> putInt(String key, int value) {
-    if (_prefs == null) return null;
+    if (_prefs == null || value == null) return null;
     return _prefs.setInt(key, value);
   }
 
@@ -124,7 +124,7 @@ class SpUtil {
 
   /// put double.
   static Future<bool> putDouble(String key, double value) {
-    if (_prefs == null) return null;
+    if (_prefs == null || value == null) return null;
     return _prefs.setDouble(key, value);
   }
 
@@ -137,7 +137,7 @@ class SpUtil {
 
   /// put string list.
   static Future<bool> putStringList(String key, List<String> value) {
-    if (_prefs == null) return null;
+    if (_prefs == null || value == null) return null;
     return _prefs.setStringList(key, value);
   }
 

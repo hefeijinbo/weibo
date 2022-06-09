@@ -103,9 +103,13 @@ class _WeiBoHomeListPagerState extends State<WeiBoHomeListPager>
       WeiBoListModel category = WeiBoListModel.fromJson(data);
       mListRecords = category.data.list;
       setState(() {
-        hotContentList.addAll(mListRecords);
+        if (mListRecords != null) {
+          hotContentList.addAll(mListRecords);
+          ishasMore = mListRecords.length >= Constant.PAGE_SIZE;
+        } else {
+          ishasMore = false;
+        }
         isloadingMore = false;
-        ishasMore = mListRecords.length >= Constant.PAGE_SIZE;
       });
     }, (error) {
       setState(() {

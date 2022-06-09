@@ -7,7 +7,7 @@ class Constant {
 
   static const String ASSETS_IMG = 'assets/images/';
 
-  static const bool ISDEBUG = true;
+  static const bool ISDEBUG = false;
 
   static const String SP_USER = 'sp_user';
 

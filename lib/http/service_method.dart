@@ -24,7 +24,7 @@ class DioManager {
     dio.options.baseUrl = Constant.baseUrl;
     dio.options.connectTimeout = 5000;
     dio.options.receiveTimeout = 3000;
-    dio.interceptors.add(LogInterceptor(responseBody: true)); //是否开启请求日志
+    dio.interceptors.add(LogInterceptor(request:false, requestHeader: false, responseHeader:false, responseBody: false)); //是否开启请求日志
     //  dio.interceptors.add(CookieManager(CookieJar()));//缓存相关类，具体设置见https://github.com/flutterchina/cookie_jar
   }
 
